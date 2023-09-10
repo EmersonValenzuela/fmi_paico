@@ -75,103 +75,24 @@
             <table border="0" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
-                        <th class="qty">Cantidad</th>
 
                         <th class="desc">Descripción</th>
-                        <th class="unit">Precio Unitario</th>
                         <th class="total">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="qty"><?= $row->line_meters_drw ?></td>
                         <td class="desc">
-                            Metros Lineales
+                            Monto Materiales
                         </td>
-                        <td class="unit">---------</td>
-                        <td class="total">---------</td>
+                        <td class="total"><?= "S/. " . $row->material_cos ?></td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_meters ?></td>
                         <td class="desc">
-                            Metros Cuadrado
+                            Monto Mano de obra
                         </td>
-                        <td class="unit"><?= "S/. " . $row->square_meter_drw ?></td>
-                        <td class="total">---------</td>
+                        <td class="total"><?= "S/. " . $row->job_cos ?></td>
                     </tr>
-                    <tr>
-                        <td class="qty"><?= $row->a_griddle ?></td>
-                        <td class="desc">
-                            Planchas
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->iron_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_griddle ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->a_riel ?></td>
-                        <td class="desc">
-                            Rieles
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->rails_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_riel ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->a_studs ?></td>
-                        <td class="desc">
-                            Parantes
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->studs_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_studs ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->a_tin_screw ?></td>
-                        <td class="desc">
-                            Tornillos para lata (Millar)
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->tin_screw_price_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_tin_screw ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->a_tin_drw ?></td>
-                        <td class="desc">
-                            Tornillos para Drywall (Millar)
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->drywall_screw_price ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_tin_drw ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->amount_putty_bucket_drw ?></td>
-                        <td class="desc">
-                            Masilla en balde
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->putty_price_bucket_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_putty_bucket ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->amount_putty_box_drw ?></td>
-                        <td class="desc">
-                            Masilla en caja
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->putty_price_box_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_putty_box ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->amount_adhesive_drw ?></td>
-                        <td class="desc">
-                            Cinta adhesiva
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->adhesive_price_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_adhesive ?></td>
-                    </tr>
-                    <tr>
-                        <td class="qty"><?= $row->equine_quantity_drw ?></td>
-                        <td class="desc">
-                            Equineros
-                        </td>
-                        <td class="unit"><?= "S/. " . $row->equine_price_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_equine ?></td>
-                    </tr>
-
                 </tbody>
             </table>
             <div class="no-break">
@@ -180,19 +101,19 @@
                         <tr>
                             <td class="desc"></td>
                             <td class="qty"></td>
-                            <td class="unit">Total de Materiales:</td>
-                            <td class="unit"><?= "S/. " . $row->material_cos ?></td>
+                            <td class="unit">SUBTOTAL</td>
+                            <td class="unit"><?= "S/. " . $row->total ?></td>
                         </tr>
                         <tr>
                             <td class="desc"></td>
                             <td class="qty"></td>
-                            <td class="unit">Mano de obra:</td>
-                            <td class="unit"><?= "S/. " . $row->job_cos ?></td>
+                            <td class="unit">IGV</td>
+                            <td class="unit" id="igv"><?= "S/. " . $row->job_cos ?></td>
                         </tr>
                         <tr>
                             <td class="desc"></td>
-                            <td class="unit" colspan="2">TOTAL:</td>
-                            <td class="unit"><?= "S/. " . $row->total ?></td>
+                            <td class="unit" colspan="2">MONTO TOTAL:</td>
+                            <td class="unit" id="amount_total"><?= "S/. " . $row->total ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -200,10 +121,23 @@
         </div>
 
     </section>
-
+    <input type="hidden" value="<?= $row->total ?>" id="total">
+    <input type="hidden" value="<?= $row->total ?>" id="total">
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            if (!Math.round10) {
+                Math.round10 = function(value, exp) {
+                    return decimalAdjust("round", value, exp);
+                };
+            }
+            const total = document.getElementById("total");
+            const igv = document.getElementById("igv");
+            const amount_total = document.getElementById("amount_total");
+            igv_t = total.value * 0.18;
+            igv.innerText = Math.round10(igv_t, -2);
+            total_t = parseFloat(total.value) + parseFloat(igv_t);
+            amount_total.innerText = Math.round10(total_t, -2);
             // Escuchamos el click del botón
             const $boton = document.querySelector("#generatePDF");
             var x = document.getElementById("frame_btn");
@@ -234,10 +168,29 @@
                 setTimeout(function() {
                     x.style.display = "block";
 
-                },1000)
+                }, 1000)
 
             });
         });
+
+        function decimalAdjust(type, value, exp) {
+            // Si exp no está definido o es cero...
+            if (typeof exp === "undefined" || +exp === 0) {
+                return Math[type](value);
+            }
+            value = +value;
+            exp = +exp;
+            // Si el valor no es un número o la exp no es un número entero...
+            if (isNaN(value) || !(typeof exp === "number" && exp % 1 === 0)) {
+                return NaN;
+            }
+            // cambiar
+            value = value.toString().split("e");
+            value = Math[type](+(value[0] + "e" + (value[1] ? +value[1] - exp : -exp)));
+            //  cambiar hacia atrás
+            value = value.toString().split("e");
+            return +(value[0] + "e" + (value[1] ? +value[1] + exp : exp));
+        }
     </script>
     <script src="https://kit.fontawesome.com/70a301601b.js" crossorigin="anonymous"></script>
 

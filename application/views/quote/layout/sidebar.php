@@ -15,7 +15,7 @@
                     <span class="app-brand-logo demo">
                         <img src="<?= base_url() ?>assets/img/logo.png" alt="Brand Logo" class="img-fluid">
                     </span>
-                    <a href="index.html" class="app-brand-text demo sidenav-text font-weight-normal ml-2">Educate</a>
+                    <a href="<?= base_url('cotizaciones') ?>" class="app-brand-text demo sidenav-text font-weight-normal ml-2">Educate</a>
                     <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
@@ -27,7 +27,7 @@
 
                     <!-- Dashboards -->
                     <li class="sidenav-item">
-                        <a href="<?= base_url() ?>" class="sidenav-link">
+                        <a href="<?= base_url('cotizaciones') ?>" class="sidenav-link">
                             <i class="sidenav-icon feather icon-home"></i>
                             <div>Dashboards</div>
                         </a>

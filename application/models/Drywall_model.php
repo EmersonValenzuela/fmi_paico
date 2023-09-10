@@ -24,4 +24,11 @@ class Drywall_model extends CI_Model
         $this->db->insert($table, $data);
         return $this->db->insert_id();
     }
+    public function get_data($table)
+    {
+        $this->db->select('*');
+        $this->db->from($table);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

@@ -104,6 +104,7 @@ table {
 caption,
 th,
 td {
+	font-size: 20px;
 	text-align: left;
 	font-weight: normal;
 	vertical-align: middle;
@@ -113,6 +114,7 @@ q,
 blockquote {
 	quotes: none;
 }
+
 q:before,
 q:after,
 blockquote:before,
@@ -148,43 +150,53 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
 body a {
 	text-decoration: none;
 	color: inherit;
 }
+
 body a:hover {
 	color: inherit;
 	opacity: 0.7;
 }
+
 body .container {
 	min-width: 500px;
 	margin: 0 auto;
 	padding: 0 20px;
 }
+
 body .clearfix:after {
 	content: "";
 	display: table;
 	clear: both;
 }
+
 body .left {
 	float: left;
 }
+
 body .right {
 	float: right;
 }
+
 body .helper {
 	display: inline-block;
 	height: 100%;
 	vertical-align: middle;
 }
+
 body .no-break {
 	page-break-inside: avoid;
 }
 
 header {
+	font-size: 15px;
 	margin-top: 20px;
 	margin-bottom: 50px;
 }
+
 header figure {
 	float: left;
 	width: 60px;
@@ -194,20 +206,24 @@ header figure {
 	border-radius: 50%;
 	text-align: center;
 }
+
 header figure img {
 	margin-top: 13px;
 }
+
 header .company-address {
 	float: left;
 	max-width: 150px;
 	line-height: 1.7em;
 }
+
 header .company-address .title {
 	color: #ff4a00;
 	font-weight: 400;
 	font-size: 1.5em;
 	text-transform: uppercase;
 }
+
 header .company-contact {
 	float: right;
 	height: 60px;
@@ -215,6 +231,7 @@ header .company-contact {
 	background-color: #ff4a00;
 	color: white;
 }
+
 header .company-contact span {
 	display: inline-block;
 	vertical-align: middle;
@@ -227,10 +244,12 @@ header .middle-btn {
 	background-color: #ff4a00;
 	color: white;
 }
+
 header .middle-btn span {
 	display: inline-block;
 	vertical-align: middle;
 }
+
 header .company-contact .circle {
 	width: 20px;
 	height: 20px;
@@ -238,13 +257,16 @@ header .company-contact .circle {
 	border-radius: 50%;
 	text-align: center;
 }
+
 header .company-contact .circle img {
 	vertical-align: middle;
 }
+
 header .company-contact .phone {
 	height: 100%;
 	margin-right: 20px;
 }
+
 header .company-contact .email {
 	height: 100%;
 	min-width: 100px;
@@ -254,17 +276,24 @@ header .company-contact .email {
 section .details {
 	margin-bottom: 55px;
 }
+.details{
+	font-size: 17px;
+}
+
 section .details .client {
 	width: 50%;
 	line-height: 20px;
 }
+
 section .details .client .name {
 	color: #ff4a00;
 }
+
 section .details .data {
 	width: 50%;
 	text-align: right;
 }
+
 section .details .title {
 	margin-bottom: 15px;
 	color: #ff4a00;
@@ -272,25 +301,34 @@ section .details .title {
 	font-weight: 400;
 	text-transform: uppercase;
 }
+
 section table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-size: 0.9166em;
 }
+
 section table .qty,
 section table .unit,
 section table .total {
 	width: 15%;
+	
 }
+.unit{
+	font-size: 20px !important;
+}
+
 section table .desc {
 	width: 55%;
 }
+
 section table thead {
 	display: table-header-group;
 	vertical-align: middle;
 	border-color: inherit;
 }
+
 section table thead th {
 	padding: 5px 10px;
 	background: #ff4a00;
@@ -301,49 +339,63 @@ section table thead th {
 	font-weight: 400;
 	text-transform: uppercase;
 }
+
 section table thead th:last-child {
 	border-right: none;
 }
+
 section table thead .desc {
 	text-align: left;
 }
+
 section table thead .qty {
-	text-align: center;
+	font-size: 20px;
+
 }
+
 section table tbody td {
 	padding: 10px;
 	background: #e8f3db;
 	color: black;
+	font-size: 20px;
 	text-align: right;
 	border-bottom: 5px solid #ffffff;
 	border-right: 4px solid #e8f3db;
 }
+
 section table tbody td:last-child {
 	border-right: none;
 }
+
 section table tbody h3 {
 	margin-bottom: 5px;
 	color: #ff4a00;
 	font-weight: 600;
 }
+
 section table tbody .desc {
 	text-align: left;
 }
+
 section table tbody .qty {
 	text-align: center;
 }
+
 section table.grand-total {
 	margin-bottom: 45px;
 }
+
 section table.grand-total td {
 	padding: 5px 10px;
 	border: none;
 	color: black;
 	text-align: right;
 }
+
 section table.grand-total .desc {
 	background-color: transparent;
 }
+
 section table.grand-total tr:last-child td {
 	font-weight: 600;
 	color: #ff4a00;
@@ -353,15 +405,18 @@ section table.grand-total tr:last-child td {
 footer {
 	margin-bottom: 20px;
 }
+
 footer .thanks {
 	margin-bottom: 40px;
 	color: #ff4a00;
 	font-size: 1.16666666666667em;
 	font-weight: 600;
 }
+
 footer .notice {
 	margin-bottom: 25px;
 }
+
 footer .end {
 	padding-top: 5px;
 	border-top: 2px solid #ff4a00;
@@ -370,12 +425,14 @@ footer .end {
 
 .frame {
 	width: 90%;
-	margin:  auto;
+	margin: auto;
 	text-align: center;
 }
+
 button {
 	margin: 20px;
 }
+
 .custom-btn {
 	width: 130px;
 	height: 40px;
@@ -407,6 +464,7 @@ button {
 	-webkit-perspective: 230px;
 	perspective: 230px;
 }
+
 .btn-12 span {
 	background: rgb(0, 172, 238);
 	background: linear-gradient(0deg, #cd6155 0%, #c0392b 100%);
@@ -426,6 +484,7 @@ button {
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 }
+
 .btn-12 span:nth-child(1) {
 	box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
 		7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
@@ -436,6 +495,7 @@ button {
 	-moz-transform-origin: 50% 50% -20px;
 	transform-origin: 50% 50% -20px;
 }
+
 .btn-12 span:nth-child(2) {
 	-webkit-transform: rotateX(0deg);
 	-moz-transform: rotateX(0deg);
@@ -444,6 +504,7 @@ button {
 	-moz-transform-origin: 50% 50% -20px;
 	transform-origin: 50% 50% -20px;
 }
+
 .btn-12:hover span:nth-child(1) {
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
 		7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
@@ -451,6 +512,7 @@ button {
 	-moz-transform: rotateX(0deg);
 	transform: rotateX(0deg);
 }
+
 .btn-12:hover span:nth-child(2) {
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
 		7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);

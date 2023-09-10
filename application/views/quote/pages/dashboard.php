@@ -11,14 +11,30 @@
                  <li class="breadcrumb-item active">Main</li>
              </ol>
          </div>
-         <div class="row">
-             <!-- Staustic card 9 Start -->
-             <h1>Hola MUNDO</h1>
-             <!-- Staustic card 9 end -->
-         </div>
+         <div class="card">
+             <h6 class="card-header">Tabla de Cotizaciones</h6>
+             <div class="card-datatable table-responsive">
+                 <table class="datatables-demo table table-striped table-bordered" id="data-quote">
+                     <thead>
+                         <tr>
+                             <th>Nombre Cliente</th>
+                             <th>Número de Celular</th>
+                             <th>Fecha de Creación</th>
+                             <th>Fecha de Vencimiento</th>
+                             <th>Acciones</th>
+                         </tr>
+                     </thead>
+                     <tbody>
 
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+<input type="hidden" value="<?=base_url()?>" id="url_base">
      </div>
-     <!-- [ Layout content ] Start -->
+
+ </div>
+ <!-- [ Layout content ] Start -->
  </div>
  <!-- [ Layout container ] End -->
  </div>

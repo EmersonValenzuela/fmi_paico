@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -54,6 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['formulario-drywall'] = 'quote/drywall/formDrywall';
 $route['pdf-drywall/(:any)'] = 'quote/drywall/viewDrywall/$1';
+$route['pdf-cliente-drywall/(:any)'] = 'quote/drywall/viewClientDrywall/$1';
+$route['cotizaciones'] = 'quote/dashboard';
 
 
 $route['default_controller'] = 'site';

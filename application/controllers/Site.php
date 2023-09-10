@@ -65,18 +65,7 @@ class Site extends CI_Controller
 			$this->load->view('sections/footer', $dataFooter);
 		} elseif ($rol == "4") {
 			//view quotes session
-
-			$data['links'] = array(
-
-            );
-
-            $data['scripts'] = array(
-
-
-            );
-
-			$this->template->load('quote/template', 'quote/pages/dashboard', $data);
-
+			header('Location:' . base_url() . 'cotizaciones');
 		}
 	}
 	public function logout()

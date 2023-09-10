@@ -56,9 +56,7 @@ class Drywall extends CI_Controller
         $array_row = $this->security->xss_clean($array_row);
 
         $r = $this->Drywall_model->insert($array_row, 'tbl_drywall');
-
         if ($r) {
-
             $array_cos = array(
                 'drw_id' => $r,
                 'cos_griddle' => $this->input->post('cos_griddle'),
@@ -82,10 +80,7 @@ class Drywall extends CI_Controller
             );
             $array_row = $this->security->xss_clean($array_cos);
             $this->Drywall_model->insert($array_row, 'tbl_cos_drywall');
-
-
             unset($array_cos);
-
             $jsonData['status'] = 200;
             $jsonData['rsp'] =  $r;
         }
@@ -110,5 +105,17 @@ class Drywall extends CI_Controller
         $data['row'] = $r;
 
         $this->load->view('quote/pages/pdf_drywall', $data);
+    }
+    public function viewClientDrywall($id)
+    {
+        $data['links'] = array(
+            '<link href="' . base_url() . 'assets/css/pages/drywall.css" rel="stylesheet">',
+        );
+        $data['scripts'] = array(
+            '<script src="' . base_url() . 'assets/js/pages/html2pdf.bundle.min.js"></script>',
+        );
+        $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
+        $data['row'] = $r;
+        $this->load->view('quote/pages/pdf_client', $data);
     }
 }
