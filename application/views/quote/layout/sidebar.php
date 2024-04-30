@@ -13,7 +13,7 @@
                 <!-- Brand demo (see assets/css/demo/demo.css) -->
                 <div class="app-brand demo">
                     <a href="<?= base_url('cotizaciones') ?>" class="app-brand-text demo sidenav-text font-weight-normal ml-4">
-                    <span class="app-brand-logo demo">
+                        <span class="app-brand-logo demo">
                             <img src="<?= base_url() ?>assets/images/icon.png" alt="Brand Logo" class="img-fluid">
                         </span>
                     </a>
@@ -46,12 +46,14 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="sidenav-item">
-                        <a href="<?= base_url() ?>Usuarios" class="sidenav-link">
-                            <i class="sidenav-icon feather icon-user"></i>
-                            <div>Usuarios</div>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata("rol") == 4) { ?>
+                        <li class="sidenav-item">
+                            <a href="<?= base_url() ?>Usuarios" class="sidenav-link">
+                                <i class="sidenav-icon feather icon-user"></i>
+                                <div>Usuarios</div>
+                            </a>
+                        </li>
+                    <?php } ?>
 
                 </ul>
             </div>
@@ -94,7 +96,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                                         <img src="<?= base_url() ?>assets/img/user/24092019015612_71951_user.png" alt="" class="d-block ui-w-30 rounded-circle">
-                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0"></span>
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0"><?= $this->session->userdata("nombre_rol") ?></span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">

@@ -58,33 +58,43 @@ function view_pdf(id) {
 }
 
 function get_date(input) {
-	// Verificar si la cadena de entrada tiene el formato esperado (YYYY-MM-DD)
-	if (!/^\d{4}-\d{2}-\d{2}$/.test(input)) {
-		return "Fecha inválida";
-	}
+    let fecha;
+    // Verificar si la cadena de entrada contiene "T" para determinar el formato
+    if (input.includes("T")) {
+        // Extraer solo la parte de la fecha de la cadena de entrada
+        fecha = input.split("T")[0];
+    } else {
+        // Extraer solo la parte de la fecha de la cadena de entrada
+        fecha = input.split("/")[0];
+    }
 
-	// Extraer el año, mes y día de la cadena de entrada utilizando desestructuración
-	const [año, mes, dia] = input.split("-");
+    // Verificar si la cadena de fecha tiene el formato esperado (YYYY-MM-DD)
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) {
+        return "Fecha inválida";
+    }
 
-	// Objeto para mapear los nombres de los meses
-	const meses = {
-		"01": "Enero",
-		"02": "Febrero",
-		"03": "Marzo",
-		"04": "Abril",
-		"05": "Mayo",
-		"06": "Junio",
-		"07": "Julio",
-		"08": "Agosto",
-		"09": "Septiembre",
-		10: "Octubre",
-		11: "Noviembre",
-		12: "Diciembre",
-	};
+    // Extraer el año, mes y día de la cadena de fecha utilizando desestructuración
+    const [año, mes, dia] = fecha.split("-");
 
-	// Obtener el nombre del mes utilizando el objeto de meses
-	const nombre_mes = meses[mes];
+    // Objeto para mapear los nombres de los meses
+    const meses = {
+        "01": "Enero",
+        "02": "Febrero",
+        "03": "Marzo",
+        "04": "Abril",
+        "05": "Mayo",
+        "06": "Junio",
+        "07": "Julio",
+        "08": "Agosto",
+        "09": "Septiembre",
+        "10": "Octubre",
+        "11": "Noviembre",
+        "12": "Diciembre",
+    };
 
-	// Construir la fecha en el formato deseado y devolverla
-	return `${dia} de ${nombre_mes} de ${año}`;
+    // Obtener el nombre del mes utilizando el objeto de meses
+    const nombre_mes = meses[mes];
+
+    // Construir la fecha en el formato deseado y devolverla
+    return `${dia} de ${nombre_mes} de ${año}`;
 }

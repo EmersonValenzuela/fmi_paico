@@ -132,10 +132,10 @@
                             </a>
                         </li>
                     <?php
-                    }elseif ($this->session->userdata('rol') == "4"){
+                    } elseif ($this->session->userdata('rol') == "4") {
                     ?>
-                    
-                    <?php 
+
+                    <?php
                     }
                     ?>
                 </ul>
@@ -178,12 +178,12 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                                         <img src="<?= base_url() ?>assets/img/user/24092019015612_71951_user.png" alt="" class="d-block ui-w-30 rounded-circle">
-                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0"><?= $nombre_rol?></span>
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0"> <?= $this->session->userdata("nombre_rol") ?> </span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="<?= base_url() ?>site/logout" class="dropdown-item">
-                                        <i class="feather icon-power text-danger"></i> &nbsp;Cerrar Sesion</a>
+                                        <i class="feather icon-power text-danger"></i> &nbsp;Cerrar Sesion </a>
                                 </div>
                             </div>
                         </div>
