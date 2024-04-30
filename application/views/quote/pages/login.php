@@ -47,7 +47,7 @@
 
             <!-- [ Side container ] Start -->
             <!-- Do not display the container on extra small, small and medium screens -->
-            <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5" style="background-image: url('assets/img/bg/21.jpg');">
+            <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5" style="background-image: url('assets/img/login.jpg');">
                 <div class="ui-bg-overlay bg-dark opacity-50"></div>
                 <!-- [ Text ] Start -->
                 <div class="w-100 text-white px-5">
