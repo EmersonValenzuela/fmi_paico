@@ -30,7 +30,7 @@
                  </table>
              </div>
          </div>
-<input type="hidden" value="<?=base_url()?>" id="url_base">
+         <input type="hidden" value="<?= base_url() ?>" id="url_base">
      </div>
 
  </div>

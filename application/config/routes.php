@@ -54,10 +54,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['formulario-drywall'] = 'quote/drywall/formDrywall';
 $route['pdf-drywall/(:any)'] = 'quote/drywall/viewDrywall/$1';
+$route['Usuarios'] = 'quote/users';
+$route['table_users'] = 'quote/users/data_users';
+$route['add-user'] = 'quote/usauario/add_user';
+$route['delete-user'] = 'quote/usuario';
 $route['pdf-cliente-drywall/(:any)'] = 'quote/drywall/viewClientDrywall/$1';
+$route['pdf/(:any)'] = 'quote/drywall/pdf/$1';
 $route['cotizaciones'] = 'quote/dashboard';
 
 
-$route['default_controller'] = 'site';
+$route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

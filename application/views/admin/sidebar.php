@@ -3,7 +3,7 @@
 <html lang="en" class="default-style layout-fixed layout-navbar-fixed">
 
 <head>
-    <title>Educate | B4+ admin template</title>
+    <title>FMI | B4+ admin template</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +60,7 @@
                     <span class="app-brand-logo demo">
                         <img src="<?= base_url() ?>assets/img/logo.png" alt="Brand Logo" class="img-fluid">
                     </span>
-                    <a href="index.html" class="app-brand-text demo sidenav-text font-weight-normal ml-2">Educate</a>
+                    <a href="index.html" class="app-brand-text demo sidenav-text font-weight-normal ml-2">FMI</a>
                     <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
@@ -151,7 +151,7 @@
                         <span class="app-brand-logo demo">
                             <img src="<?= base_url() ?>assets/img/logo-dark.png" alt="Brand Logo" class="img-fluid">
                         </span>
-                        <span class="app-brand-text demo font-weight-normal ml-2">Educate</span>
+                        <span class="app-brand-text demo font-weight-normal ml-2">FMI</span>
                     </a>
 
                     <!-- Sidenav toggle (see assets/css/demo/demo.css) -->

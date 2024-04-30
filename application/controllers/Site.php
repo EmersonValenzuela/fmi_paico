@@ -63,8 +63,7 @@ class Site extends CI_Controller
 				'scripts' => ""
 			);
 			$this->load->view('sections/footer', $dataFooter);
-		} elseif ($rol == "4") {
-			//view quotes session
+		} elseif ($rol == "4" || $rol == "5") {
 			header('Location:' . base_url() . 'cotizaciones');
 		}
 	}

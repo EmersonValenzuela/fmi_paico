@@ -118,4 +118,15 @@ class Drywall extends CI_Controller
         $data['row'] = $r;
         $this->load->view('quote/pages/pdf_client', $data);
     }
+
+    public function pdf($id)
+    {
+        $data['links'] = array(
+        );
+        $data['scripts'] = array(
+        );
+        $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
+        $data['row'] = $r;
+        $this->load->view('quote/pages/newpdf', $data);
+    }
 }

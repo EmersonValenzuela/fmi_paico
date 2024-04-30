@@ -3,7 +3,7 @@
 <html lang="en" class="default-style layout-fixed layout-navbar-fixed">
 
 <head>
-    <title>Educate | Cotización</title>
+    <title>FMI | Cotización</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

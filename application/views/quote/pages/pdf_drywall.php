@@ -1,251 +1,338 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" class="default-style layout-fixed layout-navbar-fixed">
 
 <head>
-    <title>Cotización Drywall</title>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <!-- <link rel="stylesheet" href="sass/main.css" media="screen" charset="utf-8"/> -->
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta http-equiv="content-type" content="text-html; charset=utf-8">
-    <?php
-    for ($i = 0; $i < count($links); $i++) {
-        echo $links[$i];
-    }
-    ?>
+    <title>Cotización | FMI</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Empire Pro Bootstrap admin template made using Bootstrap 4, it has tons of ready made feature, UI components, pages which completely fulfills any dashboard needs.">
+    <meta name="keywords" content="admin template, bootstrap admin template, bootstrap dashboard, admin theme, dashboard template, bootstrap dashboard template, bootstrap admin panel, dashboard theme, best admin template, dashboard theme, website templates, bootstrap 4 admin template">
+    <meta name="author" content="Codedthemes">
+    <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/img/favicon.ico">
+    <link href="../../../css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/fonts/fontawesome.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/fonts/ionicons.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/fonts/linearicons.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/fonts/open-iconic.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/fonts/feather.css">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-material.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/shreerang-material.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/uikit.css">
+
+    <!-- Libs -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <style>
+        html,
+        body {
+            background: #fff !important;
+        }
+
+        body> :not(.invoice-print) {
+            display: none !important;
+        }
+
+        .invoice-print {
+            min-width: 768px !important;
+            font-size: 15px !important;
+        }
+
+        .invoice-print * {
+            border-color: #aaa !important;
+            color: #000 !important;
+        }
+    </style>
 </head>
 
-<body id="body_pdf">
-    <div class="frame" id="frame_btn">
-        <button class="custom-btn btn-12" id="generatePDF">
-            <span>Descargar</span>
-            <span><i class="fa-regular fa-file-pdf fa-2x"></i></span>
-        </button>
+<body>
+    <div class="page-loader">
+        <div class="bg-primary"></div>
     </div>
-    <header class="clearfix">
-        <div class="container">
-            <figure>
-                <img class="logo" src="data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjM5cHgiIGhlaWdodD0iMzFweCIgdmlld0JveD0iMCAwIDM5IDMxIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy40LjEgKDE1NjgxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5ob21lNDwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJJTlZPSUNFLTEiIHNrZXRjaDp0eXBlPSJNU0FydGJvYXJkR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00Mi4wMDAwMDAsIC00NS4wMDAwMDApIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPGcgaWQ9IlpBR0xBVkxKRSIgc2tldGNoOnR5cGU9Ik1TTGF5ZXJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAuMDAwMDAwLCAxNS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJob21lNCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIuMDAwMDAwLCAzMC4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMzguMjc5MzM1LDE0LjAzOTk1MiBMMzIuMzc5MDM3OCw5LjAxMjMzODM1IEwzMi4zNzkwMzc4LDMuMjA0MzM2NzQgQzMyLjM3OTAzNzgsMi4xNTQ0MTY1MyAzMS4zODA1NTkyLDEuMzAzMjk3MjggMzAuMTQ2MDE3NiwxLjMwMzI5NzI4IEMyOC45MTQ2MTk2LDEuMzAzMjk3MjggMjcuOTE2MTQxMSwyLjE1NDQxNjUzIDI3LjkxNjE0MTEsMy4yMDQzMzY3NCBMMjcuOTE2MTQxMSw1LjIwOTMzODY1IEwyMy41MjI2OTc3LDEuNDY1NzY5OTggQzIxLjM1MDM4NzksLTAuMzgzODc0MjAyIDE3LjU3MzY3NTEsLTAuMzgwNjA5NjggMTUuNDA2NjcsMS40NjkwMzQ1IEwwLjY1MzA3ODA4NiwxNC4wMzk5NTIgQy0wLjIxNzU5NDQ1OCwxNC43ODM1MDk1IC0wLjIxNzU5NDQ1OCwxNS45ODY3Nzg1IDAuNjUzMDc4MDg2LDE2LjcyODk5NjYgQzEuNTI0NjM0NzYsMTcuNDcyNTU0MSAyLjkzOTQ0MDgxLDE3LjQ3MjU1NDEgMy44MTAxMTMzNSwxNi43Mjg5OTY2IEwxOC41NjIxMzM1LDQuMTU4MDc5MTUgQzE5LjA0MzAwMjUsMy43NTA2ODM2NSAxOS44ODk5MDE4LDMuNzUwNjgzNjUgMjAuMzY4MDIwMiw0LjE1NjgyMzU2IEwzNS4xMjIyOTk3LDE2LjcyODk5NjYgQzM1LjU2MDE0MTEsMTcuMTAwNzMzNSAzNi4xMzA0MDU1LDE3LjI4NTgwNjcgMzYuNzAwNjcsMTcuMjg1ODA2NyBDMzcuMjcyMDE1MSwxNy4yODU4MDY3IDM3Ljg0MzQ1ODQsMTcuMTAwNzMzNSAzOC4yNzk3MjgsMTYuNzI4OTk2NiBDMzkuMTUwNzkzNSwxNS45ODY3Nzg1IDM5LjE1MDc5MzUsMTQuNzgzNTA5NSAzOC4yNzkzMzUsMTQuMDM5OTUyIEwzOC4yNzkzMzUsMTQuMDM5OTUyIFoiIGlkPSJGaWxsLTEiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMjAuMjQxMzkyOSw3Ljc2Njk2NTM5IEMxOS44MTI3ODU5LDcuNDAyMDA4NjcgMTkuMTE4OTM5NSw3LjQwMjAwODY3IDE4LjY5MTUxMTMsNy43NjY5NjUzOSBMNS43MTQyMzY3OCwxOC44MjEzMDM2IEM1LjUwOTMxNDg2LDE4Ljk5NTU3ODggNS4zOTMzOTU0NywxOS4yMzM5NzI1IDUuMzkzMzk1NDcsMTkuNDgyNDEwOSBMNS4zOTMzOTU0NywyNy41NDUzNTk2IEM1LjM5MzM5NTQ3LDI5LjQzNzE5MTQgNy4xOTM1ODQzOCwzMC45NzEwMTQxIDkuNDEzODMzNzUsMzAuOTcxMDE0MSBMMTUuODM4NzE1NCwzMC45NzEwMTQxIEwxNS44Mzg3MTU0LDIyLjQ5MjU1MDUgTDIzLjA5MjUxODksMjIuNDkyNTUwNSBMMjMuMDkyNTE4OSwzMC45NzEwMTQxIEwyOS41MTc4OTE3LDMwLjk3MTAxNDEgQzMxLjczODE0MTEsMzAuOTcxMDE0MSAzMy41MzgyMzE3LDI5LjQzNzE5MTQgMzMuNTM4MjMxNywyNy41NDUzNTk2IEwzMy41MzgyMzE3LDE5LjQ4MjQxMDkgQzMzLjUzODIzMTcsMTkuMjMzOTcyNSAzMy40MjMwOTgyLDE4Ljk5NTU3ODggMzMuMjE3NDg4NywxOC44MjEzMDM2IEwyMC4yNDEzOTI5LDcuNzY2OTY1MzkgWiIgaWQ9IkZpbGwtMyI+PC9wYXRoPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4=" alt="">
-            </figure>
-            <div class="company-address">
-                <h2 class="title">Company title</h2>
-                <p>
-                    455 Foggy Heights,<br>
-                    AZ 85004, US
-                </p>
-            </div>
-            <div class="company-contact">
-                <div class="phone left">
-                    <span class="circle">
-                        <img src="data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjkuNzYycHgiIGhlaWdodD0iOS45NThweCINCgkgdmlld0JveD0iLTQuOTkyIDAuNTE5IDkuNzYyIDkuOTU4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00Ljk5MiAwLjUxOSA5Ljc2MiA5Ljk1OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8dGl0bGU+RmlsbCAxPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9IlBhZ2UtMSIgc2tldGNoOnR5cGU9Ik1TUGFnZSI+DQoJPGcgaWQ9IklOVk9JQ0UtMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMwMS4wMDAwMDAsIC01NC4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNBcnRib2FyZEdyb3VwIj4NCgkJPGcgaWQ9IlpBR0xBVkxKRSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAuMDAwMDAwLCAxNS4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIj4NCgkJCTxnIGlkPSJLT05UQUtUSSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjY3LjAwMDAwMCwgMzUuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+DQoJCQkJPGcgaWQ9Ik92YWwtMS1feDJCXy1GaWxsLTEiPg0KCQkJCQk8cGF0aCBpZD0iRmlsbC0xIiBmaWxsPSIjOEJDMzRBIiBkPSJNOC43NjUsMTIuMzc1YzAuMDIsMC4xNjItMC4wMjgsMC4zMDMtMC4xNDMsMC40MjJMNy4yNDYsMTQuMTkNCgkJCQkJCWMtMC4wNjIsMC4wNy0wLjE0MywwLjEzMy0wLjI0MywwLjE4MmMtMC4xMDEsMC4wNDktMC4xOTcsMC4wOC0wLjI5NSwwLjA5NGMtMC4wMDcsMC0wLjAyOCwwLTAuMDYyLDAuMDA0DQoJCQkJCQljLTAuMDM0LDAuMDA1LTAuMDgsMC4wMDgtMC4xMzQsMC4wMDhjLTAuMTMxLDAtMC4zNDMtMC4wMjMtMC42MzUtMC4wNjhjLTAuMjkzLTAuMDQ1LTAuNjUxLTAuMTU4LTEuMDc2LTAuMzM2DQoJCQkJCQljLTAuNDI0LTAuMTgyLTAuOTA0LTAuNDUxLTEuNDQyLTAuODA5Yy0wLjUzNi0wLjM1Ny0xLjEwOS0wLjg1Mi0xLjcxNi0xLjQ3OWMtMC40ODEtMC40ODQtMC44OC0wLjk1LTEuMTk4LTEuMzkzDQoJCQkJCQlDMC4xMjgsOS45NS0wLjEyNSw5LjU0MS0wLjMxOSw5LjE2NGMtMC4xOTMtMC4zNzYtMC4zMzgtMC43MTctMC40MzQtMS4wMjNjLTAuMDk3LTAuMzA2LTAuMTYxLTAuNTctMC4xOTUtMC43OTINCgkJCQkJCWMtMC4wMzUtMC4yMjEtMC4wNS0wLjM5NC0wLjA0Mi0wLjUyMWMwLjAwNy0wLjEyNiwwLjAxLTAuMTk3LDAuMDEtMC4yMTFjMC4wMTQtMC4wOTksMC4wNDQtMC4xOTgsMC4wOTMtMC4zMDENCgkJCQkJCWMwLjA0OS0wLjEwMSwwLjEwOC0wLjE4NCwwLjE3Ni0wLjI0N2wxLjM3NS0xLjQwM2MwLjA5Ny0wLjA5OCwwLjIwNi0wLjE0NywwLjMzLTAuMTQ3YzAuMDksMCwwLjE2OSwwLjAyNiwwLjIzOCwwLjA3OQ0KCQkJCQkJQzEuMyw0LjY0OCwxLjM1OSw0LjcxNCwxLjQwNiw0Ljc5MWwxLjEwNiwyLjE0MWMwLjA2MiwwLjExNCwwLjA4LDAuMjM1LDAuMDUyLDAuMzdDMi41MzgsNy40MzYsMi40NzgsNy41NDgsMi4zODksNy42NA0KCQkJCQkJTDEuODgzLDguMTU3QzEuODY5LDguMTcxLDEuODU2LDguMTk0LDEuODQ2LDguMjI2QzEuODM1LDguMjU2LDEuODMsOC4yODMsMS44Myw4LjMwNGMwLjAyNywwLjE0NywwLjA5LDAuMzE3LDAuMTg3LDAuNTA3DQoJCQkJCQljMC4wODIsMC4xNjksMC4yMSwwLjM3NSwwLjM4MiwwLjYxOGMwLjE3MiwwLjI0MywwLjQxNywwLjUyMSwwLjczNCwwLjgzOWMwLjMxMSwwLjMyMiwwLjU4NSwwLjU3NCwwLjgyOCwwLjc1NQ0KCQkJCQkJYzAuMjQsMC4xNzgsMC40NDMsMC4zMDksMC42MDQsMC4zOTVjMC4xNjIsMC4wODUsMC4yODYsMC4xMzUsMC4zNzIsMC4xNTRsMC4xMjgsMC4wMjRjMC4wMTUsMCwwLjAzOC0wLjAwNiwwLjA2Ny0wLjAxNg0KCQkJCQkJYzAuMDMyLTAuMDEsMC4wNTQtMC4wMjEsMC4wNjctMC4wMzdsMC41ODgtMC42MTJjMC4xMjUtMC4xMTIsMC4yNy0wLjE2OCwwLjQzNi0wLjE2OGMwLjExNywwLDAuMjA3LDAuMDIxLDAuMjc3LDAuMDYxaDAuMDENCgkJCQkJCWwxLjk5NSwxLjIwM0M4LjY1MSwxMi4xMiw4LjczNywxMi4yMzQsOC43NjUsMTIuMzc1TDguNzY1LDEyLjM3NXoiLz4NCgkJCQk8L2c+DQoJCQk8L2c+DQoJCTwvZz4NCgk8L2c+DQo8L2c+DQo8L3N2Zz4NCg==" alt="">
-                        <span class="helper"></span>
-                    </span> (602) 51
-                    <a href="tel:602-519-0450">(9-0450</a>
-                    <span class="helper"></span>
+
+    <!-- Content -->
+
+    <div class="invoice-print p-5">
+        <div class="row">
+            <div class="col-sm-6 pb-4">
+                <div class="media align-items-center mb-4">
+                    <a href="index.html" class="navbar-brand app-brand demo py-0 mr-4">
+                        <span class="app-brand-logo demo">
+                            <img src="<?= base_url(); ?>assets/images/icon.png" alt="Brand Logo" class="img-fluid">
+                        </span>
+                        <span class="app-brand-text demo font-weight-bold text-dark ml-2">FABRICACIONES METÁLICAS INFANTES EIRL.
+                        </span>
+                    </a>
                 </div>
-                <div class="email right">
-                    <span class="circle">
-                        <img src="data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE0LjE3M3B4Ig0KCSBoZWlnaHQ9IjE0LjE3M3B4IiB2aWV3Qm94PSIwLjM1NCAtMi4yNzIgMTQuMTczIDE0LjE3MyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwLjM1NCAtMi4yNzIgMTQuMTczIDE0LjE3MyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSINCgk+DQo8dGl0bGU+ZW1haWwxOTwvdGl0bGU+DQo8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCjxnIGlkPSJQYWdlLTEiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPg0KCTxnIGlkPSJJTlZPSUNFLTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00MTcuMDAwMDAwLCAtNTUuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCI+DQoJCTxnIGlkPSJaQUdMQVZMSkUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwLjAwMDAwMCwgMTUuMDAwMDAwKSIgc2tldGNoOnR5cGU9Ik1TTGF5ZXJHcm91cCI+DQoJCQk8ZyBpZD0iS09OVEFLVEkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2Ny4wMDAwMDAsIDM1LjAwMDAwMCkiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiPg0KCQkJCTxnIGlkPSJPdmFsLTEtX3gyQl8tZW1haWwxOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTE3LjAwMDAwMCwgMC4wMDAwMDApIj4NCgkJCQkJPHBhdGggaWQ9ImVtYWlsMTkiIGZpbGw9IiM4QkMzNEEiIGQ9Ik0zLjM1NCwxNC4yODFoMTQuMTczVjUuMzQ2SDMuMzU0VjE0LjI4MXogTTEwLjQ0LDEwLjg2M0w0LjYyNyw2LjAwOGgxMS42MjZMMTAuNDQsMTAuODYzDQoJCQkJCQl6IE04LjEyNSw5LjgxMkw0LjA1LDEzLjIxN1Y2LjQwOUw4LjEyNSw5LjgxMnogTTguNjUzLDEwLjI1M2wxLjc4OCwxLjQ5M2wxLjc4Ny0xLjQ5M2w0LjAyOSwzLjM2Nkg0LjYyNEw4LjY1MywxMC4yNTN6DQoJCQkJCQkgTTEyLjc1NSw5LjgxMmw0LjA3NS0zLjQwM3Y2LjgwOEwxMi43NTUsOS44MTJ6Ii8+DQoJCQkJPC9nPg0KCQkJPC9nPg0KCQk8L2c+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=" alt="">
-                        <span class="helper"></span>
-                    </span>
-                    <a href="mailto:company@example.com">company@example.com</a>
-                    <span class="helper"></span>
+                <div class="mb-1">Oficina, A.H. Sarita Colonia Mz. “O” Lt “6” 1er Sector- Callao</div>
+                <div class="mb-1">RUC: 20538257614</div>
+                <div>Cel: 947181222</div>
+            </div>
+            <div class="col-sm-6 text-right pb-4">
+                <h6 class="text-big text-large font-weight-bold mb-3">Cotización C-<?= $row->id_drw ?></h6>
+                <div class="mb-1">Fecha de la factura:
+                    <strong class="font-weight-semibold"><?= fecha($row->date_drw) ?></strong>
+                </div>
+                <div>Fecha de vencimiento:
+                    <strong class="font-weight-semibold"><?= fecha($row->date_ex_drw) ?></strong>
                 </div>
             </div>
         </div>
-    </header>
-
-    <section>
-        <div class="container">
-            <div class="details clearfix">
-                <div class="client left">
-                    <p>DIRIGIDO A:</p>
-                    <p class="name"><?= $row->name_drw ?></p>
-                    <p><?= $row->number_drw ?></p>
-                    <a href="mailto:<?= $row->email_drw ?>"><?= $row->email_drw ?></a>
-                </div>
-                <div class="data right">
-                    <div class="title">Cotización C-<?= $row->id_drw ?></div>
-                    <div class="date">
-                        Fecha de la factura: <?= fecha($row->date_drw) ?><br>
-                        Fecha de vencimiento: <?= fecha($row->date_ex_drw) ?>
-                    </div>
-                </div>
+        <hr class="mb-4">
+        <div class="row">
+            <div class="col-sm-6 mb-4">
+                <div class="font-weight-bold mb-2">Dirigido a:</div>
+                <div><?= $row->name_drw ?></div>
+                <div><?= $row->number_drw ?></div>
+                <div><?= $row->email_drw ?></div>
             </div>
 
-            <table border="0" cellspacing="0" cellpadding="0">
+        </div>
+        <div class="table-responsive mb-4">
+            <table class="table m-0">
                 <thead>
                     <tr>
-                        <th class="qty">Cantidad</th>
-
-                        <th class="desc">Descripción</th>
-                        <th class="unit">Precio Unitario</th>
-                        <th class="total">Total</th>
+                        <th class="py-3 w-75">
+                            Descripción
+                        </th>
+                        <th class="py-3">
+                            Cantidad
+                        </th>
+                        <th class="py-3">
+                            Precio Unitario
+                        </th>
+                        <th class="py-3">
+                            Total
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="qty"><?= $row->line_meters_drw ?></td>
-                        <td class="desc">
-                            Metros Lineales
+                        <td class="py-3" colspan="4">
+                            <div class="font-weight-semibold"> Cotizacion de <?= $row->line_meters_drw ?> metros lineales</div>
                         </td>
-                        <td class="unit">---------</td>
-                        <td class="total">---------</td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_meters ?></td>
-                        <td class="desc">
-                            Metros Cuadrado
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Metros Lineales</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->square_meter_drw ?></td>
-                        <td class="total">---------</td>
+                        <td class="py-3">
+                            <strong><?= $row->line_meters_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong>---------</strong>
+                        </td>
+                        <td class="py-3">
+                            <strong>---------</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_griddle ?></td>
-                        <td class="desc">
-                            Planchas
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Metros Cuadrado</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->iron_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_griddle ?></td>
+                        <td class="py-3">
+                            <strong><?= $row->a_meters ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->square_meter_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong>---------</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_riel ?></td>
-                        <td class="desc">
-                            Rieles
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Planchas</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->rails_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_riel ?></td>
+                        <td class="py-3">
+                            <strong><?= $row->a_griddle ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->iron_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_griddle ?> </strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_studs ?></td>
-                        <td class="desc">
-                            Parantes
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Rieles</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->studs_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_studs ?></td>
+                        <td class="py-3">
+                            <strong><?= $row->a_riel ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->rails_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_riel ?> </strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_tin_screw ?></td>
-                        <td class="desc">
-                            Tornillos para lata (Millar)
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Parantes</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->tin_screw_price_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_tin_screw ?></td>
+                        <td class="py-3">
+                            <strong><?= $row->a_studs ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->studs_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_studs ?> </strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->a_tin_drw ?></td>
-                        <td class="desc">
-                            Tornillos para Drywall (Millar)
+                        <td class="py-3">
+                            <div class="font-weight-semibold"> Tornillos para lata (Millar)</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->drywall_screw_price ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_tin_drw ?></td>
+                        <td class="py-3">
+                            <strong><?= $row->a_tin_screw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->tin_screw_price_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_tin_screw ?> </strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="qty"><?= $row->amount_putty_bucket_drw ?></td>
-                        <td class="desc">
-                            Masilla en balde
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Tornillos para Drywall (Millar)</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->putty_price_bucket_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_putty_bucket ?></td>
-                    </tr>
+                        <td class="py-3">
+                            <strong><?= $row->a_tin_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->drywall_screw_price ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_tin_drw ?> </strong>
+                        </td>
+                    </tr>  
                     <tr>
-                        <td class="qty"><?= $row->amount_putty_box_drw ?></td>
-                        <td class="desc">
-                            Masilla en caja
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Masilla en balde</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->putty_price_box_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_putty_box ?></td>
-                    </tr>
+                        <td class="py-3">
+                            <strong><?= $row->amount_putty_bucket_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->putty_price_bucket_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_putty_bucket ?> </strong>
+                        </td>
+                    </tr>     
                     <tr>
-                        <td class="qty"><?= $row->amount_adhesive_drw ?></td>
-                        <td class="desc">
-                            Cinta adhesiva
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Masilla en caja</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->adhesive_price_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_adhesive ?></td>
-                    </tr>
+                        <td class="py-3">
+                            <strong><?= $row->amount_putty_box_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->putty_price_box_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_putty_box ?> </strong>
+                        </td>
+                    </tr>   
                     <tr>
-                        <td class="qty"><?= $row->equine_quantity_drw ?></td>
-                        <td class="desc">
-                            Equineros
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Masilla en caja</div>
                         </td>
-                        <td class="unit"><?= "S/. " . $row->equine_price_drw ?></td>
-                        <td class="unit"><?= "S/. " . $row->cos_equine ?></td>
-                    </tr>
+                        <td class="py-3">
+                            <strong><?= $row->amount_putty_box_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->putty_price_box_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_putty_box ?> </strong>
+                        </td>
+                    </tr>     
+                    <tr>
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Cinta adhesiva</div>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= $row->amount_adhesive_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->adhesive_price_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_adhesive ?> </strong>
+                        </td>
+                    </tr>     
+                    <tr>
+                        <td class="py-3">
+                            <div class="font-weight-semibold">Equineros</div>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= $row->equine_quantity_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->equine_price_drw ?></strong>
+                        </td>
+                        <td class="py-3">
+                            <strong> <?= "S/. " . $row->cos_equine ?> </strong>
+                        </td>
+                    </tr>                         
 
+                    <tr>
+                        <td colspan="3" class="text-right py-3">
+                        Total de Materiales:
+                            <br> Mano de obra:
+                            <br>
+                            <span class="d-block text-big mt-2">Total:</span>
+                        </td>
+                        <td class="py-3">
+                            <strong><?= "S/. " . $row->material_cos ?></strong>
+                            <br>
+                            <strong><?= "S/. " . $row->job_cos ?></strong>
+                            <br>
+                            <strong class="d-block text-big mt-2"><?= "S/. " . $row->total ?></strong>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <div class="no-break">
-                <table class="grand-total">
-                    <tbody>
-                        <tr>
-                            <td class="desc"></td>
-                            <td class="qty"></td>
-                            <td class="unit">Total de Materiales:</td>
-                            <td class="unit"><?= "S/. " . $row->material_cos ?></td>
-                        </tr>
-                        <tr>
-                            <td class="desc"></td>
-                            <td class="qty"></td>
-                            <td class="unit">Mano de obra:</td>
-                            <td class="unit"><?= "S/. " . $row->job_cos ?></td>
-                        </tr>
-                        <tr>
-                            <td class="desc"></td>
-                            <td class="unit" colspan="2">TOTAL:</td>
-                            <td class="unit"><?= "S/. " . $row->total ?></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
+    </div>
 
-    </section>
+    <!-- / Content -->
 
+    <!-- Core scripts -->
+    <script src="<?= base_url(); ?>assets/js/pace.js"></script>
+    <script src="<?= base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/material-ripple.js"></script>
+    <script src="<?= base_url(); ?>assets/js/layout-helpers.js"></script>
+    <script src="<?= base_url(); ?>assets/libs/popper/popper.js"></script>
+    <script src="<?= base_url(); ?>assets/js/bootstrap.js"></script>
+    <script src="<?= base_url(); ?>assets/js/sidenav.js"></script>
 
+    <!-- Libs -->
+    <script src="<?= base_url(); ?>assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <!-- Demo -->
+    <script src="<?= base_url(); ?>assets/js/demo.js"></script>
+    <script src="<?= base_url(); ?>assets/js/analytics.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Escuchamos el click del botón
-            const $boton = document.querySelector("#generatePDF");
-            var x = document.getElementById("frame_btn");
-            $boton.addEventListener("click", () => {
-                x.style.display = "none";
-                const $elementoParaConvertir = document.body; // <-- Aquí puedes elegir cualquier elemento del DOM
-                html2pdf()
-                    .set({
-                        margin: 0.5,
-                        filename: 'documento.pdf',
-                        image: {
-                            type: 'jpeg',
-                            quality: 0.98
-                        },
-                        html2canvas: {
-                            scale: 3, // A mayor escala, mejores gráficos, pero más peso
-                            letterRendering: true,
-                        },
-                        jsPDF: {
-                            unit: "in",
-                            format: "a4",
-                            orientation: 'portrait' // landscape o portrait
-                        }
-                    })
-                    .from($elementoParaConvertir)
-                    .save()
-                    .catch(err => console.log(err));
-                setTimeout(function() {
-                    x.style.display = "block";
-
-                },1000)
-
-            });
-        });
+        // -------------------------------------------------------------------------
+        // Print on window load
+        /*
+                $(function() {
+                    window.print();
+                });
+                */
     </script>
-    <script src="https://kit.fontawesome.com/70a301601b.js" crossorigin="anonymous"></script>
-
-    <?php
-    for ($i = 0; $i < count($scripts); $i++) {
-        echo $scripts[$i];
-    }
-    ?>
 </body>
 
 </html>

@@ -12,10 +12,11 @@
             <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-white logo-dark">
                 <!-- Brand demo (see assets/css/demo/demo.css) -->
                 <div class="app-brand demo">
+                    <a href="<?= base_url('cotizaciones') ?>" class="app-brand-text demo sidenav-text font-weight-normal ml-4">
                     <span class="app-brand-logo demo">
-                        <img src="<?= base_url() ?>assets/img/logo.png" alt="Brand Logo" class="img-fluid">
-                    </span>
-                    <a href="<?= base_url('cotizaciones') ?>" class="app-brand-text demo sidenav-text font-weight-normal ml-2">Educate</a>
+                            <img src="<?= base_url() ?>assets/images/icon.png" alt="Brand Logo" class="img-fluid">
+                        </span>
+                    </a>
                     <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
@@ -45,6 +46,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidenav-item">
+                        <a href="<?= base_url() ?>Usuarios" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-user"></i>
+                            <div>Usuarios</div>
+                        </a>
+                    </li>
 
                 </ul>
             </div>
@@ -60,7 +67,7 @@
                         <span class="app-brand-logo demo">
                             <img src="<?= base_url() ?>assets/img/logo-dark.png" alt="Brand Logo" class="img-fluid">
                         </span>
-                        <span class="app-brand-text demo font-weight-normal ml-2">Educate</span>
+                        <span class="app-brand-text demo font-weight-normal ml-2">FMI</span>
                     </a>
 
                     <!-- Sidenav toggle (see assets/css/demo/demo.css) -->

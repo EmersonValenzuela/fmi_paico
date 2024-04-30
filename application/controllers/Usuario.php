@@ -23,7 +23,7 @@ class Usuario extends CI_Controller {
 			
 			$dataHeader['titulo']="";
 			$data['usuarios']=$this->consultas->getUsers();
-			$this->load->view('admin/sidebar',$dataHeader);
+			$this->load->view('quote/sidebar',$dataHeader);
 			$data['error'] ="";
 			$this->load->view('admin/usuarios',$data);
 						
