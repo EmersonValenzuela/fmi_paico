@@ -1,9 +1,11 @@
 $(function () {
+	// Modo estricto de JavaScript
 	"user strict";
 
-	let base_url = "";
-
+	// Evento change del formulario
 	$("#dw_form").on("change", function () {
+		// Obtener los valores de los campos de entrada
+
 		let griddle_prc = $("#iron_prc").val(),
 			rails_prc = $("#rails_prc").val(),
 			studs_prc = $("#studs_prc").val(),
@@ -15,6 +17,7 @@ $(function () {
 			adhesive_prc = $("#adhesive_prc").val(),
 			square_meter = $("#square_meter").val();
 
+		// Redondear y establecer los valores de los campos de entrada
 		$("#iron_prc").val() > 0
 			? $("#iron_prc").val(Number.parseFloat(griddle_prc).toFixed(2))
 			: "";
@@ -49,19 +52,26 @@ $(function () {
 			: "";
 	});
 
-	
-
+	// Evento input de los campos de número
 	$(".input_number").on("input", function () {
+		// Permitir solo números y el punto decimal
 		this.value = this.value.replace(/[^0-9.]/g, "");
 	});
 
-	// Ronda decimal
+	// Define una función personalizada para redondear números a una cantidad específica de decimales
 	if (!Math.round10) {
+		// Verifica si la función Math.round10 no está definida en el entorno actual
+		// Si no está definida, se define una nueva función
 		Math.round10 = function (value, exp) {
+			// Esta función toma dos parámetros: value (el número que se va a redondear) y exp (el exponente)
+			// exp define la cantidad de decimales a la que se quiere redondear el número
+
+			// Se llama a otra función llamada decimalAdjust para realizar el redondeo
 			return decimalAdjust("round", value, exp);
 		};
 	}
 
+	// Evento click del botón de enviar
 	$("#btn_send").on("click", function () {
 		let name_user = $("#name_user").val(),
 			email_user = $("#email_user").val(),
@@ -91,7 +101,7 @@ $(function () {
 		a_tin_drw = Math.round10((164 * meters) / 2.44, -1); //cantidad de tornillos para drywall
 		a_meters = Math.round10(2.44 * meters, -1); // cantidad de metros cuadrados
 
-		// costos
+		// Cálculos de cantidad y costos
 
 		cos_griddle = Math.round10(a_griddle * griddle_prc, -1); //costo de planchas de drywall a usar
 		cos_riel = Math.round10(a_riel * rails_prc, -1); //costo de rieles a usar
@@ -104,7 +114,7 @@ $(function () {
 		cos_equine = Math.round(equine_prc * equine_quantity); //costo de equineros a usar
 		cos_adhesive = Math.round(adhesive_prc * amount_adhesive); //costo de cinta a usar
 
-		//precios totales
+		// Precios totales
 
 		let array_prc = [
 			cos_griddle,
@@ -168,6 +178,7 @@ $(function () {
 
 		let l = Ladda.create(this);
 
+		// Petición AJAX para enviar los datos del formulario
 		$.ajax({
 			url: "quote/drywall/upDrywall",
 			method: "POST",
@@ -175,29 +186,34 @@ $(function () {
 			async: true,
 			data: array_var,
 			beforeSend: () => {
+				// Cambiar el texto del botón de enviar y comenzar la animación de Ladda
 				$("#btn_send").attr("Guardando");
 				l.start();
 			},
 		})
-			.done((a) => {
-				if (a.status == 200) {
-					console.log(a.rsp);
+			.done((response) => {
+				// Manejar la respuesta del servidor
+				if (response.status == 200) {
+					// Mostrar un mensaje de éxito y abrir el PDF en una nueva pestaña
 					msg_alert(
 						"Lo estamos redireccionando al PDF",
 						"Registro exitoso",
 						"success"
 					);
-					$("#dw_form")[0].reset();
+					$("#dw_form")[0].reset(); // Limpiar el formulario después de enviar
 					setTimeout(function () {
-						let win = window.open("pdf-drywall/" + a.rsp, "_blank");
+						let win = window.open("pdf-drywall/" + response.rsp, "_blank");
 						win.focus();
 					}, 3200);
 				}
 			})
-			.fail((e) => {
-				console.log("error");
+			.fail((error) => {
+				// Manejar errores de la petición AJAX
+				console.log("Error:", error);
+				msg_alert("Error al enviar los datos", "Error", "error");
 			})
 			.always(() => {
+				// Detener la animación de Ladda al finalizar la petición
 				l.stop();
 				return false;
 			});
@@ -222,6 +238,7 @@ $(function () {
 		return +(value[0] + "e" + (value[1] ? +value[1] + exp : exp));
 	}
 
+	// Función para mostrar alertas
 	function msg_alert(msg, title, type) {
 		toastr[type](msg, title, {
 			positionClass: "toast-top-right",

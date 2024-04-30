@@ -6,6 +6,7 @@
 <script src="<?= base_url(); ?>assets/js/sidenav.js"></script>
 <script src="<?= base_url(); ?>assets/js/layout-helpers.js"></script>
 <script src="<?= base_url(); ?>assets/js/material-ripple.js"></script>
+<script src="<?= base_url(); ?>assets/libs/toastr/toastr.js"></script>
 
 <!-- Libs -->
 <script src="<?= base_url(); ?>assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>

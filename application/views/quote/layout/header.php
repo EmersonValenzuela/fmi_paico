@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
     <!-- Icon fonts -->
-    <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/fontawesome.css" >
+    <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/fontawesome.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/ionicons.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/linearicons.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/fonts/open-iconic.css">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-material.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/shreerang-material.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/uikit.css">
-
+    <link rel="stylesheet" href="<?= base_url() ?>assets/libs/toastr/toastr.css">
 
     <!-- Libs -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/libs/perfect-scrollbar/perfect-scrollbar.css">
