@@ -53,18 +53,20 @@ $(() => {
 		$("#id-drw").val(rowData.id_drw);
 		$("#modals-top").modal("show");
 	});
-
 	$("#form-mail").on("submit", function (e) {
 		e.preventDefault();
 		$.ajax({
 			url: "sendMailClient",
-			method: "POST",
-			data: $(this).serialize(),
-		}).done((response) => {
-			console.log(response);
-		}).fail((err) => {
-			console.log(err.responseText);
+			method: "post",
+			data: {id_drw: $("#id-drw").val(), client_mail: $("#client-mail").val()},
+			datatype: "json",
 		})
+			.done((response) => {
+				console.log(response);
+			})
+			.fail((err) => {
+				console.log(err.responseText);
+			});
 	});
 });
 

@@ -130,7 +130,7 @@ class Drywall extends CI_Controller
     public function sendMailClient()
     {
         $id = $this->input->post('id_drw');
-        $email = $this->input->post('client-email');
+        $email = $this->input->post('client_mail');
 
         $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
         $data['row'] = $r;

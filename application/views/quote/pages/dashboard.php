@@ -45,7 +45,7 @@
 
  <div class="modal modal-top fade" id="modals-top">
      <div class="modal-dialog">
-         <form class="modal-content" id="form-mail">
+         <form class="modal-content" id="form-mail" method="post">
              <div class="modal-header">
                  <h5 class="modal-title">Correo Electronico
                      <br>
