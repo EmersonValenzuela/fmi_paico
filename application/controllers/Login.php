@@ -16,10 +16,10 @@ class Login extends CI_Controller
 
 		$pass = $this->input->post('password');
 
-		$isUser = $this->consultas->isUser($user, $pass);
+		$isUser = $this->Consultas->isUser($user, $pass);
 
 		if ($isUser == "1") {
-			$idUser = $this->consultas->findIdUser($user, $pass);
+			$idUser = $this->Consultas->findIdUser($user, $pass);
 			$data = array(
 				'idUser' => $idUser->id,
 				'rol' => $idUser->idRol,
