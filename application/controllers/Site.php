@@ -12,12 +12,12 @@ class Site extends CI_Controller
 	{
 		$idUser = $this->session->userdata('idUser');
 		$rol = $this->session->userdata('rol');
-		$user = $this->consultas->getUsers($idUser);
+		$user = $this->Consultas->getUsers($idUser);
 
 		if (!$idUser) {
-			$dataHeader['cursos'] = $this->consultas->getCatp();
-			$dataHeader['curss'] = $this->consultas->getCats();
-			$dataHeader['curstt'] = $this->consultas->getCatt();
+			$dataHeader['cursos'] = $this->Consultas->getCatp();
+			$dataHeader['curss'] = $this->Consultas->getCats();
+			$dataHeader['curstt'] = $this->Consultas->getCatt();
 
 			$data['msj'] = "";
 			$dataHeader['usuario'] = "";
@@ -33,14 +33,14 @@ class Site extends CI_Controller
 			return false;
 		} elseif ($rol == "1" || $rol == "3") {
 
-			$dataHeader['emails'] = $this->consultas->getNEmails();
+			$dataHeader['emails'] = $this->Consultas->getNEmails();
 			$data['msj'] = "";
 			$dataHeader['estado'] = "2";
 			$dataHeader['titulo'] = "Admin";
 			$dataHeader['usuario'] = $user;
 			$dataHeader['nombre_rol'] = $this->session->userdata('nombre_rol');
 
-			$consultasWitget = $this->consultas->consultasIniciales();
+			$consultasWitget = $this->Consultas->consultasIniciales();
 			$data = $consultasWitget;
 			$this->load->view('admin/sidebar', $dataHeader);
 			$this->load->view('admin/index', $data);
@@ -49,9 +49,9 @@ class Site extends CI_Controller
 			);
 		} elseif ($rol == "2") {
 
-			$dataHeader['cursos'] = $this->consultas->getCatp();
-			$dataHeader['curss'] = $this->consultas->getCats();
-			$dataHeader['curstt'] = $this->consultas->getCatt();
+			$dataHeader['cursos'] = $this->Consultas->getCatp();
+			$dataHeader['curss'] = $this->Consultas->getCats();
+			$dataHeader['curstt'] = $this->Consultas->getCatt();
 
 			$data['msj'] = "";
 			$dataHeader['estado'] = "2";
