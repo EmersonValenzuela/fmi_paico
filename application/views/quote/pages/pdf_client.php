@@ -75,7 +75,7 @@
                 <div>Cel: 947181222</div>
             </div>
             <div class="col-sm-6 text-right pb-4">
-                <h6 class="text-big text-large font-weight-bold mb-3">Cotización C-<?= $row->id_drw ?></h6>
+                <h3 class="font-weight-bold mb-3">Cotización C-<?= $row->id_drw ?></h3>
                 <div class="mb-1">Fecha de la factura:
                     <strong class="font-weight-semibold"><?= fecha($row->date_drw) ?></strong>
                 </div>
