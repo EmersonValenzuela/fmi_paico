@@ -1,7 +1,7 @@
 $(() => {
 	// Esta función se ejecuta cuando el DOM está completamente cargado
 
-	$("#data-quote").dataTable({
+	const table = $("#data-quote").dataTable({
 		// Inicialización de la tabla utilizando el plugin DataTables de jQuery
 		language: {
 			url: "assets/json/Spanish.json", // Se especifica el idioma de la tabla
@@ -37,11 +37,34 @@ $(() => {
 							")'><i class='fas fa-file-pdf'></i> </button> " +
 							"<button type='button' class='btn btn-info waves-effect waves-light' OnClick='view_pdf(" +
 							oData.id_drw +
-							")'><i class='fas fa-clipboard'></i> </button> "
+							")'><i class='fas fa-clipboard'></i> </button> " +
+							"<button type='button' class='btn btn-success waves-effect waves-light btn-mail'><i class='fas fa-location-arrow'></i> </button> "
 					);
 				},
 			},
 		],
+	});
+
+	table.on("click", ".btn-mail", function () {
+		let row = $(this).closest("tr");
+		let rowData = $(this).closest("table").DataTable().row(row).data();
+
+		$("#client-mail").val(rowData.email_drw);
+		$("#id-drw").val(rowData.id_drw);
+		$("#modals-top").modal("show");
+	});
+
+	$("#form-mail").on("submit", function (e) {
+		e.preventDefault();
+		$.ajax({
+			url: "sendMailClient",
+			method: "POST",
+			data: $(this).serialize(),
+		}).done((response) => {
+			console.log(response);
+		}).fail((err) => {
+			console.log(err.responseText);
+		})
 	});
 });
 
@@ -58,43 +81,43 @@ function view_pdf(id) {
 }
 
 function get_date(input) {
-    let fecha;
-    // Verificar si la cadena de entrada contiene "T" para determinar el formato
-    if (input.includes("T")) {
-        // Extraer solo la parte de la fecha de la cadena de entrada
-        fecha = input.split("T")[0];
-    } else {
-        // Extraer solo la parte de la fecha de la cadena de entrada
-        fecha = input.split("/")[0];
-    }
+	let fecha;
+	// Verificar si la cadena de entrada contiene "T" para determinar el formato
+	if (input.includes("T")) {
+		// Extraer solo la parte de la fecha de la cadena de entrada
+		fecha = input.split("T")[0];
+	} else {
+		// Extraer solo la parte de la fecha de la cadena de entrada
+		fecha = input.split("/")[0];
+	}
 
-    // Verificar si la cadena de fecha tiene el formato esperado (YYYY-MM-DD)
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) {
-        return "Fecha inválida";
-    }
+	// Verificar si la cadena de fecha tiene el formato esperado (YYYY-MM-DD)
+	if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) {
+		return "Fecha inválida";
+	}
 
-    // Extraer el año, mes y día de la cadena de fecha utilizando desestructuración
-    const [año, mes, dia] = fecha.split("-");
+	// Extraer el año, mes y día de la cadena de fecha utilizando desestructuración
+	const [año, mes, dia] = fecha.split("-");
 
-    // Objeto para mapear los nombres de los meses
-    const meses = {
-        "01": "Enero",
-        "02": "Febrero",
-        "03": "Marzo",
-        "04": "Abril",
-        "05": "Mayo",
-        "06": "Junio",
-        "07": "Julio",
-        "08": "Agosto",
-        "09": "Septiembre",
-        "10": "Octubre",
-        "11": "Noviembre",
-        "12": "Diciembre",
-    };
+	// Objeto para mapear los nombres de los meses
+	const meses = {
+		"01": "Enero",
+		"02": "Febrero",
+		"03": "Marzo",
+		"04": "Abril",
+		"05": "Mayo",
+		"06": "Junio",
+		"07": "Julio",
+		"08": "Agosto",
+		"09": "Septiembre",
+		10: "Octubre",
+		11: "Noviembre",
+		12: "Diciembre",
+	};
 
-    // Obtener el nombre del mes utilizando el objeto de meses
-    const nombre_mes = meses[mes];
+	// Obtener el nombre del mes utilizando el objeto de meses
+	const nombre_mes = meses[mes];
 
-    // Construir la fecha en el formato deseado y devolverla
-    return `${dia} de ${nombre_mes} de ${año}`;
+	// Construir la fecha en el formato deseado y devolverla
+	return `${dia} de ${nombre_mes} de ${año}`;
 }

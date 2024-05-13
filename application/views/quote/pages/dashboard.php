@@ -42,3 +42,31 @@
  <div class="layout-overlay layout-sidenav-toggle"></div>
  </div>
  <!-- [ Layout wrapper] End -->
+
+ <div class="modal modal-top fade" id="modals-top">
+     <div class="modal-dialog">
+         <form class="modal-content" id="form-mail">
+             <div class="modal-header">
+                 <h5 class="modal-title">Correo Electronico
+                     <br>
+                     <small class="text-muted">Ingresa el correo electrónico al cual será enviado la cotización (Cliente)"</small>
+                 </h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+             </div>
+             <div class="modal-body">
+                 <div class="form-row">
+                     <div class="form-group col">
+                         <label class="form-label">Correo Electrónico</label>
+                         <input type="hidden" name="id-drw" id="id-drw" value="">
+                         <input type="text" class="form-control" placeholder="client@client.com" id="client-mail" name="client-mail">
+                         <div class="clearfix"></div>
+                     </div>
+                 </div>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                 <button type="submit" class="btn btn-primary">Enviar</button>
+             </div>
+         </form>
+     </div>
+ </div>

@@ -121,12 +121,33 @@ class Drywall extends CI_Controller
 
     public function pdf($id)
     {
-        $data['links'] = array(
-        );
-        $data['scripts'] = array(
-        );
+        $data['links'] = array();
+        $data['scripts'] = array();
         $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
         $data['row'] = $r;
         $this->load->view('quote/pages/newpdf', $data);
+    }
+    public function sendMailClient()
+    {
+        $id = $this->input->post('id_drw');
+        $email = $this->input->post('client-email');
+
+        $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
+        $data['row'] = $r;
+
+        $this->load->library('email');
+        $this->email->from('atencionalcliente@cosmicbowling.com.pe', 'Area de Cotización');
+        $this->email->to($email);
+        $this->email->subject('Envio de Cotización');
+        
+        // Cargar la vista y asignarla a una variable
+        
+        $this->email->message("<H1>HOLA</H1>");
+
+        if ($this->email->send()) {
+            echo json_encode('¡Correo electrónico enviado con éxito!');
+        } else {
+            echo json_encode('Error al enviar el correo electrónico. Detalles del error: ' . $this->email->print_debugger());
+        }
     }
 }

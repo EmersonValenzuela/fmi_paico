@@ -62,6 +62,7 @@ $route['delete-user'] = 'quote/users/delete_user';
 $route['pdf-cliente-drywall/(:any)'] = 'quote/drywall/viewClientDrywall/$1';
 $route['pdf/(:any)'] = 'quote/drywall/pdf/$1';
 $route['cotizaciones'] = 'quote/dashboard';
+$route['sendMailClient'] = 'quote/drywall/sendMailClient';
 
 
 $route['default_controller'] = 'login';
