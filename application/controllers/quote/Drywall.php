@@ -138,9 +138,10 @@ class Drywall extends CI_Controller
 
         // Configura el envío de correo electrónico
         $this->load->library('email');
-        $this->email->from('cotizacion@fmi.com.pe', 'Area de Cotización'); // Define el remitente del correo electrónico
+        $this->email->from('colegios@lagranjavilla.com', 'Area de Cotización'); // Define el remitente del correo electrónico
         $this->email->to($email); // Define el destinatario del correo electrónico
         $this->email->subject('Envio de Cotización'); // Define el asunto del correo electrónico
+        $this->email->reply_to('colegios@lagranjavilla.com', 'No responder a este mensaje'); // Configura la dirección de correo "no responder"
 
         // Carga la vista del PDF de drywall y la asigna al cuerpo del correo electrónico
         $message =  $this->load->view('quote/pages/pdf_client', $data, true); // Carga la vista del PDF y la almacena en la variable $message
@@ -148,8 +149,10 @@ class Drywall extends CI_Controller
 
         // Envía el correo electrónico y devuelve un mensaje de éxito o error
         if ($this->email->send()) { // Verifica si el correo electrónico se envió correctamente
+        header('Content-type: application/json; charset=utf-8');
             echo json_encode('¡Correo electrónico enviado con éxito!'); // Devuelve un mensaje de éxito en formato JSON
         } else {
+        header('Content-type: application/json; charset=utf-8');
             echo json_encode('Error al enviar el correo electrónico. Detalles del error: ' . $this->email->print_debugger()); // Devuelve un mensaje de error con detalles en formato JSON
         }
     }

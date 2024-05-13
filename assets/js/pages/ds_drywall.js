@@ -54,18 +54,30 @@ $(() => {
 		$("#modals-top").modal("show");
 	});
 	$("#form-mail").on("submit", function (e) {
+		$.blockUI({
+			message: '<h3><img src="assets/img/busy.gif" /> Enviando Correo...</h3>',
+		});
 		e.preventDefault();
+		$("#modals-top").modal("hide");
+
 		$.ajax({
 			url: "sendMailClient",
 			method: "post",
-			data: {id_drw: $("#id-drw").val(), client_mail: $("#client-mail").val()},
+			data: {
+				id_drw: $("#id-drw").val(),
+				client_mail: $("#client-mail").val(),
+			},
 			datatype: "json",
 		})
 			.done((response) => {
+				toastr.success(response);
 				console.log(response);
 			})
 			.fail((err) => {
 				console.log(err.responseText);
+			})
+			.always(() => {
+				$.unblockUI();
 			});
 	});
 });
