@@ -139,10 +139,11 @@ class Drywall extends CI_Controller
         $this->email->from('atencionalcliente@cosmicbowling.com.pe', 'Area de Cotización');
         $this->email->to($email);
         $this->email->subject('Envio de Cotización');
-        
+
         // Cargar la vista y asignarla a una variable
-        
-        $this->email->message("<H1>HOLA</H1>");
+        $message =  $this->load->view('quote/pages/pdf_client', $data, true);
+
+        $this->email->message($message);
 
         if ($this->email->send()) {
             echo json_encode('¡Correo electrónico enviado con éxito!');
