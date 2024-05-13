@@ -89,66 +89,68 @@ class Drywall extends CI_Controller
         echo json_encode($jsonData);
     }
 
+    // Método para ver la cotización de drywall en formato PDF
     public function viewDrywall($id)
     {
+        // Define los archivos CSS y JavaScript necesarios para la vista del PDF
         $data['links'] = array(
             '<link href="' . base_url() . 'assets/css/pages/drywall.css" rel="stylesheet">',
-
         );
 
         $data['scripts'] = array(
             '<script src="' . base_url() . 'assets/js/pages/html2pdf.bundle.min.js"></script>',
-
-
         );
+        // Obtiene los datos de la cotización de drywall
         $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
         $data['row'] = $r;
 
+        // Carga la vista del PDF de drywall
         $this->load->view('quote/pages/pdf_drywall', $data);
     }
+
+    // Método para ver la cotización de drywall para el cliente en formato PDF
     public function viewClientDrywall($id)
     {
+        // Define los archivos CSS y JavaScript necesarios para la vista del PDF
         $data['links'] = array(
             '<link href="' . base_url() . 'assets/css/pages/drywall.css" rel="stylesheet">',
         );
         $data['scripts'] = array(
             '<script src="' . base_url() . 'assets/js/pages/html2pdf.bundle.min.js"></script>',
         );
+        // Obtiene los datos de la cotización de drywall
         $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
         $data['row'] = $r;
+        // Carga la vista del PDF de drywall para el cliente
         $this->load->view('quote/pages/pdf_client', $data);
     }
 
-    public function pdf($id)
-    {
-        $data['links'] = array();
-        $data['scripts'] = array();
-        $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
-        $data['row'] = $r;
-        $this->load->view('quote/pages/newpdf', $data);
-    }
+    // Método para enviar el PDF de la cotización de drywall por correo electrónico
     public function sendMailClient()
     {
+        // Obtiene el ID de la cotización y el correo electrónico del cliente
         $id = $this->input->post('id_drw');
         $email = $this->input->post('client_mail');
 
+        // Obtiene los datos de la cotización de drywall
         $r = $this->Drywall_model->getDrywall(array('id_drw' => $id));
         $data['row'] = $r;
 
+        // Configura el envío de correo electrónico
         $this->load->library('email');
-        $this->email->from('atencionalcliente@cosmicbowling.com.pe', 'Area de Cotización');
-        $this->email->to($email);
-        $this->email->subject('Envio de Cotización');
+        $this->email->from('cotizacion@fmi.com.pe', 'Area de Cotización'); // Define el remitente del correo electrónico
+        $this->email->to($email); // Define el destinatario del correo electrónico
+        $this->email->subject('Envio de Cotización'); // Define el asunto del correo electrónico
 
-        // Cargar la vista y asignarla a una variable
-        $message =  $this->load->view('quote/pages/pdf_client', $data, true);
+        // Carga la vista del PDF de drywall y la asigna al cuerpo del correo electrónico
+        $message =  $this->load->view('quote/pages/pdf_client', $data, true); // Carga la vista del PDF y la almacena en la variable $message
+        $this->email->message($message); // Asigna el contenido del correo electrónico
 
-        $this->email->message($message);
-
-        if ($this->email->send()) {
-            echo json_encode('¡Correo electrónico enviado con éxito!');
+        // Envía el correo electrónico y devuelve un mensaje de éxito o error
+        if ($this->email->send()) { // Verifica si el correo electrónico se envió correctamente
+            echo json_encode('¡Correo electrónico enviado con éxito!'); // Devuelve un mensaje de éxito en formato JSON
         } else {
-            echo json_encode('Error al enviar el correo electrónico. Detalles del error: ' . $this->email->print_debugger());
+            echo json_encode('Error al enviar el correo electrónico. Detalles del error: ' . $this->email->print_debugger()); // Devuelve un mensaje de error con detalles en formato JSON
         }
     }
 }

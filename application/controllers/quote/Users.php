@@ -22,9 +22,10 @@ class Users extends CI_Controller
         $this->template->load('quote/template', 'quote/pages/users', $data);
     }
 
+    // Método para agregar un nuevo usuario
     public function add_user()
     {
-
+        // Obtiene los datos del formulario
         $name =  $this->input->post('name');
         $email = $this->input->post('email');
         $phone = $this->input->post('phone');
@@ -32,26 +33,30 @@ class Users extends CI_Controller
         $password = $this->input->post('password');
         $rol = $this->input->post('rol');
 
-
+        // Verifica si se ha seleccionado una imagen de perfil
         if ($_FILES['img_profile']['name'] != "") {
+            // Configura la subida de la imagen de perfil
             $config['upload_path'] = 'assets/img/img_profile';
             $config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
 
+            // Genera un nombre único para la imagen
             $img_profile = date('dmYhis') . '_' . rand(0, 9999) . "." . pathinfo($_FILES['img_profile']['name'], PATHINFO_EXTENSION);
-
             $config['file_name'] = $img_profile;
 
             $this->load->library('upload', $config);
 
+            // Sube la imagen de perfil
             if (!$this->upload->do_upload('img_profile')) {
+                // Si hay un error en la subida, muestra el error
                 $error = array('error' => $this->upload->display_errors());
-
                 var_dump($error) . "<br>";
             }
         } else {
+            // Si no se selecciona una imagen de perfil, establece una cadena vacía
             $img_profile = "";
         }
 
+        // Crea un array con los datos del usuario
         $data = array(
             'name' => $name,
             'email' => $email,
@@ -61,17 +66,24 @@ class Users extends CI_Controller
             'idRol' => $rol,
             'photo' => $img_profile
         );
-        $response = [];
 
+        $response = []; // Inicializa la respuesta como un array vacío
+
+        // Inserta los datos del usuario en la base de datos
         $result = $this->Users_model->insert($data, 'users');
 
+        // Verifica si la inserción fue exitosa
         if ($result) {
+            // Si es exitosa, establece el estado como verdadero y devuelve un mensaje de éxito
             $response['status'] = true;
-            $response['message'] = "Se agrego el nuevo usuario";
+            $response['message'] = "Se agregó el nuevo usuario";
         } else {
+            // Si hay un error, establece el estado como falso y devuelve un mensaje de error
             $response['status'] = false;
             $response['message'] = "Error al agregar usuario";
         }
+
+        // Devuelve la respuesta en formato JSON
         echo json_encode($response);
     }
 
