@@ -20,10 +20,10 @@ class Login extends CI_Controller
 
 		if ($isUser == "1") {
 			$idUser = $this->Consultas->findIdUser($user, $pass);
-			$data = array(
-				'idUser' => $idUser->id,
-				'rol' => $idUser->idRol,
-				'nombre_rol' => $idUser->rol
+			$data = array( // Datos de la session
+				'idUser' => $idUser->id, //Id del Usuario
+				'rol' => $idUser->idRol,	//Rol del usuario
+ 				'nombre_rol' => $idUser->rol  //Nombre Rol
 			);
 			$this->session->set_userdata($data);
 			redirect(base_url('site'));

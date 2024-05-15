@@ -44,9 +44,9 @@ $(() => {
 			},
 			{
 				targets: 7,
-				render: function (e, t, a, n) {
+				render: function (e, t, a, n) { // (e) Se guarda el valor de esa columna y el (a) Guarda toda la fila 
 					// Renderizar la columna de roles como nombres legibles por humanos
-					return roles[e];
+					return a.rol;
 				},
 			},
 			{
@@ -104,6 +104,8 @@ $(() => {
 		}
 	});
 
+	
+	//INSERT NUEVO USUARIO FUNCION
 	// Obtener el formulario de agregar usuario
 	const form = document.getElementById("add_user");
 
@@ -138,6 +140,8 @@ $(() => {
 			console.error("Error en la solicitud:", error); // Mostrar un mensaje de error en la consola
 		}
 	});
+	// FIN DE INSERT NUEVO USUARIO FUNCION
+
 
 	const editForm = document.getElementById("edit_user");
 

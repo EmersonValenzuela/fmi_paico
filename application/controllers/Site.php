@@ -31,39 +31,7 @@ class Site extends CI_Controller
 			);
 			$this->load->view('sections/footer', $dataFooter);
 			return false;
-		} elseif ($rol == "1" || $rol == "3") {
-
-			$dataHeader['emails'] = $this->Consultas->getNEmails();
-			$data['msj'] = "";
-			$dataHeader['estado'] = "2";
-			$dataHeader['titulo'] = "Admin";
-			$dataHeader['usuario'] = $user;
-			$dataHeader['nombre_rol'] = $this->session->userdata('nombre_rol');
-
-			$consultasWitget = $this->Consultas->consultasIniciales();
-			$data = $consultasWitget;
-			$this->load->view('admin/sidebar', $dataHeader);
-			$this->load->view('admin/index', $data);
-			$dataFooter = array(
-				'scripts' => ""
-			);
-		} elseif ($rol == "2") {
-
-			$dataHeader['cursos'] = $this->Consultas->getCatp();
-			$dataHeader['curss'] = $this->Consultas->getCats();
-			$dataHeader['curstt'] = $this->Consultas->getCatt();
-
-			$data['msj'] = "";
-			$dataHeader['estado'] = "2";
-			$dataHeader['titulo'] = "Inicio";
-			$dataHeader['usuario'] = $user;
-			$this->load->view('sections/header', $dataHeader);
-			$this->load->view('index', $data);
-			$dataFooter = array(
-				'scripts' => ""
-			);
-			$this->load->view('sections/footer', $dataFooter);
-		} elseif ($rol == "4" || $rol == "5") {
+		}  elseif ($rol == "4" || $rol == "5") {
 			header('Location:' . base_url() . 'cotizaciones');
 		}
 	}
