@@ -38,6 +38,7 @@ class Login extends CI_Controller
 				$data['error'] = $isUser;
 			}
 
+			// si no se encuentra ningun dato en la session de un usuario, te redirecciona a la vista login
 			$this->load->view('quote/pages/login', $data);
 			$dataFooter = array(
 				'scripts' => ""

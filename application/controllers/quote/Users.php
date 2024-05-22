@@ -103,15 +103,20 @@ class Users extends CI_Controller
             $config['upload_path'] = 'assets/img/img_profile';
             $config['allowed_types'] = 'jpg|png|jpeg|PNG|JPG|JPEG';
 
+            // Genera un nombre único para la imagen
             $img_profile = date('dmYhis') . '_' . rand(0, 9999) . "." . pathinfo($_FILES['img_profile']['name'], PATHINFO_EXTENSION);
-
+            
+            // Agregar el nombre de archivo al array de configuración
             $config['file_name'] = $img_profile;
 
+            // Cargar la librería de subida de archivos
             $this->load->library('upload', $config);
 
+            // Subir la imagen de perfil
             if (!$this->upload->do_upload('img_profile')) {
+                // Si hay un error en la subida, mostrar el error
                 $error = array('error' => $this->upload->display_errors());
-
+                
                 var_dump($error) . "<br>";
             }
         } else {
